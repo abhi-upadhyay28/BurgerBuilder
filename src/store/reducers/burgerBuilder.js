@@ -10,14 +10,16 @@ const INGREDIENT_PRICE = {
 const initialState = {
     ingredients: null,
     totalPrice: 4,
-    error: false
+    error: false,
+    building: false
 }
 const addIngredient = (state, action) => {
     const updatedIngredient = {[action.ingredientName]: state.ingredients[action.ingredientName] + 1}
     const updatedIngredients =  updatedObject(state.ingredients, updatedIngredient);
     const updatedState = {
         ingredients: updatedIngredients,
-        totalPrice: state.totalPrice + INGREDIENT_PRICE[action.ingredientName]
+        totalPrice: state.totalPrice + INGREDIENT_PRICE[action.ingredientName],
+        building: true
     }
     return updatedObject(state, updatedState);
 };
@@ -26,7 +28,8 @@ const removeIngredient = (state, action) => {
     const updatedIngs =  updatedObject(state.ingredients, updatedIng);
     const updatedSt = {
         ingredients: updatedIngs,
-        totalPrice: state.totalPrice + INGREDIENT_PRICE[action.ingredientName]
+        totalPrice: state.totalPrice + INGREDIENT_PRICE[action.ingredientName],
+        building: true
     }
     return updatedObject(state, updatedSt);
 };
@@ -39,7 +42,8 @@ const setIngredient = (state, action) => {
             meat: action.ingredient.meat
         },
         totalPrice: 4,
-        error: false
+        error: false,
+        building: false
     });
 };
 const fetchIngredientsFailed = (state, action) => {
